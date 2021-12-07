@@ -1,6 +1,6 @@
-# Brownie Environment
+# Osta VM Environment
 
-This is the environment to develop our Smart Contract,
+This is our environment to develop the main Ostra Smart Contract,
 we're using Brownie and Ganache (UI App) with a Mainnet Fork.
 
 - BSC Public RPC Node replaced by a [Moralis](https://moralis.io/) Speedy Node
