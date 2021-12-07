@@ -1,0 +1,18 @@
+dotenv: .env
+
+dependencies:
+  # <Creator>/<contract-name>@version
+
+compiler:
+  solc:
+    remappings:
+      # @name='<Creator>/<contract-name>@version'
+
+networks:
+  default: bsc-fork
+  bsc-fork:
+    mnemonic: proud ghost pole gym device glide milk easy wise quality iron steak
+    verify: False
+
+wallets:
+  from_key: ${PRIVATE_KEY}
