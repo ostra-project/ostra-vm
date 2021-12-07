@@ -31,7 +31,8 @@ def interact():
     txFrom = {'from': account}
     contract = Ostra[-1]  # Get Last Contract
     
-    burn(contract, txFrom, setGwei(100))
+    for _ in range(0, 10):
+        transfer(contract, account, '0xcE4DDc88807abEe52E6d477d41fcd955AFc3A9a4', setGwei(10)) 
 
 
 def main():
