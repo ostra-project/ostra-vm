@@ -1,4 +1,4 @@
-# Osta VM Environment
+# Ostra VM Environment
 
 This is our environment to develop the main Ostra Smart Contract,
 we're using Brownie and Ganache (UI App) with a Mainnet Fork.
