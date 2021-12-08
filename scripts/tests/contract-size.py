@@ -11,7 +11,7 @@ import json
 
 
 CONTRACT_NAME = 'Ostra.json'
-CONTRACT_SIZE = 24 * 1024
+CONTRACT_LIMIT_SIZE = 24 * 1024
 RELATIVE_PATH = f'../build/contracts/{CONTRACT_NAME}'
 
 
@@ -32,10 +32,16 @@ try:
     else:
         hexBytecode = bytes.fromhex(data['deployedBytecode'])
         bytecodeSize = len(hexBytecode) * 2
-        sizePercentage = round((bytecodeSize / CONTRACT_SIZE) * 100, 2)
 
-        print('==> Contract Size:', f'{bytecodeSize}/{CONTRACT_SIZE} bytes')
-        print('==> Percentage Used:', f'{sizePercentage}%')
+        bytecodeSize = 35416
+        sizePercentage = round((bytecodeSize / CONTRACT_LIMIT_SIZE) * 100, 2)
+
+        if sizePercentage <= 100:
+            print('==> Percentage Used:', f'{sizePercentage}%')
+        else:
+            print(f'==> ERROR: SIZE LIMIT IS REACHED')
+
+        print('==> Contract Size:', f'{bytecodeSize}/{CONTRACT_LIMIT_SIZE} bytes')
 
 except OSError:
     print('==> ERROR: Can\'t get contract file from the build directory')
