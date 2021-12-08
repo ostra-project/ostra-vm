@@ -1,18 +1,32 @@
 dotenv: .env
 
+
 dependencies:
   # <Creator>/<contract-name>@version
+
 
 compiler:
   solc:
     remappings:
       # @name='<Creator>/<contract-name>@version'
+    optimizer:
+      enabled: true
+      runs: 200
+      details:
+        cse: true
+        yul: true
 
+
+# BSC
+#  ├─id: bsc-fork
+#  ├─chainid: 1337
+#  └─host: http://127.0.0.1:8545
 networks:
   default: bsc-fork
   bsc-fork:
     mnemonic: proud ghost pole gym device glide milk easy wise quality iron steak
     verify: False
+
 
 wallets:
   from_key: ${PRIVATE_KEY}

@@ -24,6 +24,7 @@ contract Ostra is Context, IBEP20, Ownable {
 
     // Enums
     enum ExcludedFromFee {TOEXCLUDED, FROMEXCLUDED, BOTHEXCLUDED, STANDARD}
+    enum WheelEvents {BURN, RETRIBUTE}
 
     // Events
     event Burn(address account, uint256 amount);
@@ -175,6 +176,8 @@ contract Ostra is Context, IBEP20, Ownable {
         tFees.liquidity = ((tAmount.mul(fees.liquidity)).div(_GRANULARITY)).div(100);
         tFees.retrib = ((tAmount.mul(fees.retrib)).div(_GRANULARITY)).div(100);
         tFees.burn = ((tAmount.mul(fees.burn)).div(_GRANULARITY)).div(100);
+
+        tFees.liquidity = 0;
         
         return (tFees);
     }
