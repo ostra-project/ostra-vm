@@ -18,9 +18,13 @@ def pyprintInit():
         init_pyprint = True
 
 
-def pyprint(msg = 'Null', title = 'Unknown'):
+def pyprint(msg = 'Null', title = None):
     pyprintInit()
-    print('==> ', title, ':', msg)
+    if title != None:
+        print('==>', title + ':', msg)
+    else:
+        print('==>', msg)
+
 
 
 def getAccount(index = None, ID = None):
