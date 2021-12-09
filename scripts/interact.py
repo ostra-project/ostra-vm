@@ -1,5 +1,4 @@
 from scripts.lib import pyprint, getAccount
-from scripts.contract_size import getContractSize
 from brownie import Ostra
 
 
@@ -13,5 +12,4 @@ def interact():
     
 
 def main():
-    getContractSize()
     interact()

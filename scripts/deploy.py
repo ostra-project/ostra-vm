@@ -1,3 +1,4 @@
+from scripts.contract_size import getContractSize
 from scripts.lib import (
     pyprint,
     getAccount,
@@ -28,4 +29,5 @@ def deploy():
 
 
 def main():
+    getContractSize()
     deploy()
