@@ -5,4 +5,8 @@ we're using Brownie and Ganache (UI App) with a Mainnet Fork.
 
 - BSC Public RPC Node replaced by a [Moralis](https://moralis.io/) Speedy Node
 - Using a BSC Mainnet Fork (Block N°[13267500](https://explorer.bitquery.io/bsc/block/13267500))
+
+Environment Updates:
 - Pyprint functions for debugging purpose
+- Pyprint now supports no title & auto-initialization
+- Smart Contract Size script that checks the current size of the Contract
