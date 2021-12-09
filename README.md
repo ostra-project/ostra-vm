@@ -14,4 +14,4 @@ we're using Brownie and Ganache (UI App) with a Mainnet Fork.
 ### Contract Proxies Method:
 - Using [EIP-2535](https://eips.ethereum.org/EIPS/eip-2535) Diamonds, Multi-Facet Proxy pattern standard
 - You can also check the Diamonds standard implementations example [Github](https://github.com/mudgen/diamond)
-- We're using the 'diamond-2' implementation for the gas-optimized diamondCut fonction
+- We're using the [diamond-2](https://github.com/mudgen/diamond-2-hardhat) implementation
