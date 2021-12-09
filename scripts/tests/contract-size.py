@@ -32,8 +32,6 @@ try:
     else:
         hexBytecode = bytes.fromhex(data['deployedBytecode'])
         bytecodeSize = len(hexBytecode) * 2
-
-        bytecodeSize = 35416
         sizePercentage = round((bytecodeSize / CONTRACT_LIMIT_SIZE) * 100, 2)
 
         if sizePercentage <= 100:
