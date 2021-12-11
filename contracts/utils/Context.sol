@@ -1,7 +1,9 @@
 // SPDX-License-Identifier: MIT
-// OpenZeppelin Contracts v4.4.0 (utils/Context.sol)
+// OpenZeppelin Contracts v4.4.0 (contracts/utils/Context.sol)
+// MODIFIED VERSION
 
-pragma solidity ^0.8.0;
+pragma solidity ^0.8.10;
+
 
 /**
  * @dev Provides information about the current execution context, including the
@@ -13,12 +15,20 @@ pragma solidity ^0.8.0;
  *
  * This contract is only required for intermediate, library-like contracts.
  */
+
+// Modifications:
+// 'address'            -> 'address payable'
+// 'msg.sender'         -> 'payable(msg.sender)'
+// 'bytes calldata'     -> 'bytes memory'
+// 'this;'              -> Silence state mutability warning without generating bytecode (https://github.com/ethereum/solidity/issues/2691)
+
 abstract contract Context {
-    function _msgSender() internal view virtual returns (address) {
-        return msg.sender;
+    function _msgSender() internal view virtual returns (address payable) {
+        return payable(msg.sender);
     }
 
-    function _msgData() internal view virtual returns (bytes calldata) {
+    function _msgData() internal view virtual returns (bytes memory) {
+        this;
         return msg.data;
     }
 }

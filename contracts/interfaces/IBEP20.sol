@@ -1,23 +1,14 @@
-// SPDX-License-Identifier: GPL-3.0-or-later
+// SPDX-License-Identifier: Apache-2.0
+// OpenZeppelin Contracts v4.4.0 (contracts/token/ERC20/IERC20.sol)
+// MODIFIED VERSION (ERC20 -> BEP20)
 
-pragma solidity ^0.8.2;
+pragma solidity ^0.8.10;
 
 
+/**
+ * @dev Interface of the BEP20 standard.
+ */
 interface IBEP20 {
-    /**
-     * @dev Returns the amount of tokens in existence.
-     */
-    function totalSupply() external view returns (uint256);
-
-    /**
-     * @dev Returns the token decimals.
-     */
-    function decimals() external view returns (uint8);
-
-    /**
-     * @dev Returns the token symbol.
-     */
-    function symbol() external view returns (string memory);
 
     /**
      * @dev Returns the token name.
@@ -25,9 +16,19 @@ interface IBEP20 {
     function name() external view returns (string memory);
 
     /**
-     * @dev Returns the bep token owner.
+     * @dev Returns the token symbol.
      */
-    function getOwner() external view returns (address);
+    function symbol() external view returns (string memory);
+
+    /**
+     * @dev Returns the token decimals.
+     */
+    function decimals() external view returns (uint8);
+
+    /**
+     * @dev Returns the amount of tokens in existence.
+     */
+    function totalSupply() external view returns (uint256);
 
     /**
      * @dev Returns the amount of tokens owned by `account`.
@@ -44,13 +45,15 @@ interface IBEP20 {
     function transfer(address recipient, uint256 amount) external returns (bool);
 
     /**
-     * @dev Returns the remaining number of tokens that `spender` will be
-     * allowed to spend on behalf of `owner` through {transferFrom}. This is
-     * zero by default.
+     * @dev Moves `amount` tokens from `sender` to `recipient` using the
+     * allowance mechanism. `amount` is then deducted from the caller's
+     * allowance.
      *
-     * This value changes when {approve} or {transferFrom} are called.
+     * Returns a boolean value indicating whether the operation succeeded.
+     *
+     * Emits a {Transfer} event.
      */
-    function allowance(address _owner, address spender) external view returns (uint256);
+    function transferFrom(address sender, address recipient, uint256 amount) external returns (bool);
 
     /**
      * @dev Sets `amount` as the allowance of `spender` over the caller's tokens.
@@ -69,19 +72,13 @@ interface IBEP20 {
     function approve(address spender, uint256 amount) external returns (bool);
 
     /**
-     * @dev Moves `amount` tokens from `sender` to `recipient` using the
-     * allowance mechanism. `amount` is then deducted from the caller's
-     * allowance.
+     * @dev Returns the remaining number of tokens that `spender` will be
+     * allowed to spend on behalf of `owner` through {transferFrom}. This is
+     * zero by default.
      *
-     * Returns a boolean value indicating whether the operation succeeded.
-     *
-     * Emits a {Transfer} event.
+     * This value changes when {approve} or {transferFrom} are called.
      */
-    function transferFrom(
-        address sender,
-        address recipient,
-        uint256 amount
-    ) external returns (bool);
+    function allowance(address _owner, address spender) external view returns (uint256);
 
     /**
      * @dev Emitted when `value` tokens are moved from one account (`from`) to
