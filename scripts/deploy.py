@@ -24,7 +24,6 @@ def deploy():
     )
 
     pyprint(f'{contract.address}', 'Contract Address')
-
     return contract
 
 
