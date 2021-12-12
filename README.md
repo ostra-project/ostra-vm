@@ -21,7 +21,7 @@ we're using Brownie and Ganache (UI App) with a Mainnet Fork.
 - We're using the [diamond-2](https://github.com/mudgen/diamond-2-hardhat) reference implementation
 - [Louper](https://louper.dev/) can be used to check the facets off-chain
 
-### Libraries
+### Libraries:
 - Context.sol
 - Ownable.sol
 - IBEP20.sol
