@@ -1,14 +1,8 @@
-from scripts.contract_size import getContractSize
-from scripts.lib import (
-    pyprint,
-    getAccount,
-    PANCAKESWAP_ROUTER
-)
-from brownie import (
-    config,
-    network,
-    Ostra
-)
+from scripts.utils.contract_size import getContractSize
+from scripts.utils.brownie_connect import getAccount
+from scripts.utils.pyprint import pyprint
+import scripts.settings as settings
+from brownie import (config, Diamond)
 
 
 def deploy():
@@ -16,11 +10,11 @@ def deploy():
     account = getAccount()
     txFrom = {'from': account}
     
-    contract = Ostra.deploy(
+    contract = Diamond.deploy(
         account.address,
-        PANCAKESWAP_ROUTER,
+        settings.pancakeRouter,
         txFrom,
-        publish_source = config['networks'][network.show_active()].get('verify', False)
+        publish_source = config['networks'][settings.activeNetwork].get('verify', False)
     )
 
     pyprint(f'{contract.address}', 'Contract Address')

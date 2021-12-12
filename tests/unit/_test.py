@@ -1,5 +1,6 @@
 from scripts.deploy import deploy
-from scripts.lib import pyprint, getAccount
+from scripts.utils.brownie_connect import getAccount
+from scripts.utils.pyprint import pyprint
 from brownie import (
     accounts,
     config,

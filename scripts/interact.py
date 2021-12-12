@@ -1,15 +1,17 @@
-from scripts.lib import pyprint, getAccount
-from brownie import Ostra
+from scripts.utils.brownie_connect import getAccount
+from scripts.utils.pyprint import pyprint
+import scripts.settings as settings
+from brownie import Diamond
 
 
 def gwei(amount):
-    return amount * 10**8
+    return amount * settings.contractDecimals
 
 
 def interact():
     account = getAccount()
     txFrom = {'from': account}
-    contract = Ostra[-1]  # Get Last Contract
+    contract = Diamond[-1]  # Get Last Contract
 
 
 def main():
