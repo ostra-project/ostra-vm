@@ -22,9 +22,9 @@ we're using Brownie and Ganache (UI App) with a Mainnet Fork.
 - [Louper](https://louper.dev/) can be used to check the facets off-chain
 
 ### Libraries:
-- SafeMath.sol (0.8+, Overflow is now natively supported by Solidity)
-- IPancake.sol (Pair & Factory)
-- Context.sol
-- Address.sol
-- Ownable.sol
-- IBEP20.sol
+- SafeMath Lib (0.8+, Overflow is now natively supported by Solidity)
+- Ownable Contract (Replaced later by a DAO System)
+- IPancake Interface (Pair & Factory)
+- IBEP20 Interface
+- Context Contract
+- Address Lib
