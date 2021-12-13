@@ -25,6 +25,6 @@ we're using Brownie and Ganache (UI App) with a Mainnet Fork.
 - SafeMath Lib (0.8+, Overflow is now natively supported by Solidity)
 - Ownable Contract (Replaced later by a DAO System)
 - IPancake Interface (Pair & Factory)
-- IBEP20 Interface
 - Context Contract
+- IBEP20 Interface
 - Address Lib
