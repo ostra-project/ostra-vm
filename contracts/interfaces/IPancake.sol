@@ -5,8 +5,6 @@ pragma solidity ^0.8.10;
 
 
 interface IPancakeFactory {
-    event PairCreated(address indexed token0, address indexed token1, address pair, uint256);
-
     function feeTo() external view returns (address);
 
     function feeToSetter() external view returns (address);
@@ -22,13 +20,14 @@ interface IPancakeFactory {
     function setFeeTo(address) external;
 
     function setFeeToSetter(address) external;
+
+
+    event PairCreated(address indexed token0, address indexed token1, address pair, uint256);
 }
 
 
 interface IPancakeRouter01 {
     function factory() external pure returns (address);
-
-    // solhint-disable-next-line func-name-mixedcase
     function WETH() external pure returns (address);
 
     function addLiquidity(
