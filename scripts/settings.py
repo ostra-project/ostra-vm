@@ -8,6 +8,7 @@ contractSizeLimit = 24 * 1024
 contractDecimals = 10**8
 
 # Pyprint
+pyprintTitle = 'DEBUG ZONE'
 pyprintColor = Fore.LIGHTBLUE_EX
 pyprintRounding = 4
 

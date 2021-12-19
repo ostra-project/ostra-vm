@@ -1,5 +1,6 @@
 import sys, os, json
 from pathlib import Path
+from utils.pyprint import pyprint
 
 current = os.path.dirname(os.path.realpath(__file__))
 parent = os.path.dirname(current)
@@ -8,9 +9,6 @@ import settings
 
 
 def getContractSize():
-    print('')
-    print('-------------- CONTRACT SIZE --------------')
-
     contractName = settings.contractName + '.json'
     relativePath = f'../build/contracts/{contractName}'
 
@@ -23,20 +21,20 @@ def getContractSize():
         data = json.load(contract)
 
         if 'deployedBytecode' not in data:
-            print(f'==> ERROR: deployedBytecode not found in {relativePath}')
+            pyprint(f'deployedBytecode not found in {relativePath}', 'ERROR', None, 'CONTRACT SIZE')
         else:
             hexBytecode = bytes.fromhex(data['deployedBytecode'])
             bytecodeSize = len(hexBytecode) * 2
             sizePercentage = round((bytecodeSize / settings.contractSizeLimit) * 100, 2)
 
             if sizePercentage <= 100:
-                print('==> Percentage Used:', f'{sizePercentage}%')
+                pyprint(f'{sizePercentage}%', 'Percentage used', None, 'CONTRACT SIZE')
             else:
-                print(f'==> ERROR: SIZE LIMIT IS REACHED')
+                pyprint('SIZE LIMIT IS REACHED', 'ERROR', None, 'CONTRACT SIZE')
 
-            print('==> Contract Size:', f'{bytecodeSize}/{settings.contractSizeLimit} bytes')
+            pyprint(f'{bytecodeSize} / {settings.contractSizeLimit} bytes', 'Contract Size', None, 'CONTRACT SIZE')
 
     except OSError:
-        print('==> ERROR: Can\'t get contract file from the build directory')
+        pyprint('Can\'t get contract file from the build directory', 'ERROR', None, 'CONTRACT SIZE')
 
     return bytecodeSize

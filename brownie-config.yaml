@@ -1,5 +1,7 @@
 # Add a .env file
-# Format: PRIVATE_KEY = 0xff24035b746538dcf76e37774e8865beaa17d1a0d8fc472fe78958f7d8e6917f
+# Format:
+# - PRIVATE_KEY = 0x.....
+# - BSCSCAN_TOKEN = AA...
 dotenv: .env
 
 
@@ -27,7 +29,7 @@ networks:
   bsc-test:
     verify: False
   bsc-main:
-    verify: False
+    verify: True
 
 
 wallets:

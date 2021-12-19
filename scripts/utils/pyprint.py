@@ -1,4 +1,4 @@
-from colorama import Fore, Style
+from colorama import Style
 import sys, os
 
 current = os.path.dirname(os.path.realpath(__file__))
@@ -7,17 +7,17 @@ sys.path.append(parent)
 import settings
 
 
-initPyprint = False
-def pyprintInit():
-    global initPyprint
-    if not initPyprint:
+currentSectionTitle = ''
+def pyprintInit(sectionTitle):
+    global currentSectionTitle
+    if currentSectionTitle != sectionTitle:
         print('')
-        print(f'{settings.pyprintColor}-------------- DEBUG ZONE --------------{Style.RESET_ALL}')
-        initPyprint = True
+        print(f'{settings.pyprintColor}-------------- {sectionTitle} --------------{Style.RESET_ALL}')
+        currentSectionTitle = sectionTitle
 
 
-def pyprint(msg = 'Null', title = None, percents = None):
-    pyprintInit()
+def pyprint(msg = 'Null', title = None, percents = None, sectionTitle = settings.pyprintTitle):
+    pyprintInit(sectionTitle)
 
     output = str(msg)
     outputInt = 0

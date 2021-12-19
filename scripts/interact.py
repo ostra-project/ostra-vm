@@ -1,5 +1,6 @@
 from scripts.utils.brownie_connect import getAccount
 from scripts.utils.pyprint import pyprint
+from scripts.utils.generators import generateAddressArray
 import scripts.settings as settings
 from brownie import Diamond
 
