@@ -24,7 +24,7 @@ compiler:
 networks:
   default: bsc-fork
   bsc-fork:
-    mnemonic: proud ghost pole gym device glide milk easy wise quality iron steak
+    mnemonic: ${MNEMONIC}
     verify: False
   bsc-test:
     verify: False
