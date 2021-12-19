@@ -27,7 +27,6 @@ we're using Brownie and Ganache (UI App) with a Mainnet Fork.
 - IPancake Interface (Pair & Factory)
 - Context Contract
 - IBEP20 Interface
-- Address Lib
 
 ### API:
 - Diamond Facet specifically made for an API Endpoint
