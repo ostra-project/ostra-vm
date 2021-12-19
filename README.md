@@ -28,3 +28,8 @@ we're using Brownie and Ganache (UI App) with a Mainnet Fork.
 - Context Contract
 - IBEP20 Interface
 - Address Lib
+
+### API:
+- Diamond Facet specifically made for an API Endpoint
+- Contract with `external view` functionnalities which can be called without any gas needed
+- Can be used by an API Endpoint which could save multiple Historical Data
