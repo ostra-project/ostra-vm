@@ -6,7 +6,6 @@ from brownie import (config, Diamond)
 
 
 def deploy():
-
     account = getAccount()
     txFrom = {'from': account}
     
@@ -17,7 +16,6 @@ def deploy():
         publish_source = config['networks'][settings.activeNetwork].get('verify', False)
     )
 
-    pyprint(f'{contract.address}', 'Contract Address')
     return contract
 
 
