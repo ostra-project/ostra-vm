@@ -2,14 +2,14 @@ from scripts.utils.contract_size import getContractSize
 from scripts.utils.brownie_connect import getAccount
 from scripts.utils.pyprint import pyprint
 import scripts.settings as settings
-from brownie import (config, Diamond)
+from brownie import (config, OSTRA)
 
 
 def deploy():
     account = getAccount()
     txFrom = {'from': account}
     
-    contract = Diamond.deploy(
+    contract = OSTRA.deploy(
         account.address,
         settings.pancakeRouter,
         txFrom,

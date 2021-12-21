@@ -9,14 +9,16 @@ import settings
 
 # Get Account depending of the current active network
 accountID = settings.mainAccount[settings.defAccountIndex]
-def getAccount(index = None, ID = accountID):
-    if index:
+def getAccount(index = 0, ID = accountID):
+
+    # Local BSC Fork
+    if settings.activeNetwork == settings.localBSC:
         return accounts[index]
-    
-    if ID and settings.activeNetwork in settings.mainEnv:
+
+    # Testnet
+    if settings.activeNetwork == settings.testBSC:
+        return accounts.add(config['wallets']['from_key'])
+
+    # Mainnet
+    if ID and settings.activeNetwork == settings.mainBSC:
         return accounts.load(ID)
-
-    if settings.activeNetwork in settings.localEnv:
-        return accounts[0]
-
-    return accounts.add(config['wallets']['from_key'])

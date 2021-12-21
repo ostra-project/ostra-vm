@@ -3,7 +3,7 @@ from brownie import network
 
 
 # Contract
-contractName = 'Diamond'
+contractName = 'OSTRA'
 contractSizeLimit = 24 * 1024
 contractDecimals = 10**8
 
@@ -13,17 +13,24 @@ pyprintColor = Fore.LIGHTBLUE_EX
 pyprintRounding = 4
 
 # Brownie Connect
-mainAccount = ['real-account']
-defAccountIndex = 0
-localEnv = ["bsc-fork"]
-mainEnv = ["bsc-main"]
-pancakeMainnet = '0x05fF2B0DB69458A0750badebc4f9e13aDd608C7F'
-pancakeTestnet = '0xD99D1c33F9fC3444f8101754aBC46c52416550D1'
+defAccountIndex = 1
+mainAccount = ['real-account', 'matrix-account']
+
+# Test Wallets
+testWallet01 = '0x0A5C946949b4cc1a80E332Aa89ACC5aa9017E206'
+testWallet02 = '0x2c211b0EdC9449673385209651845bE6d7d003f2'
+
+# Blockchains
+localBSC = 'bsc-fork'
+testBSC = 'bsc-test'
+mainBSC = 'bsc-main'
 
 # Active Network
-# Auto PancakeSwap Router (Mainnet & Mainnet Fork OR Testnet)
+# Auto PancakeSwap Router (Mainnet & Mainnet-Fork OR Testnet)
+pancakeMainnet = '0x10ED43C718714eb63d5aA57B78B54704E256024E'
+pancakeTestnet = '0xd99d1c33f9fc3444f8101754abc46c52416550d1'
 activeNetwork = network.show_active()
-if activeNetwork in localEnv or activeNetwork in mainEnv:
+if (activeNetwork == localBSC or activeNetwork == mainBSC):
     pancakeRouter = pancakeMainnet
-else:
+elif (activeNetwork == testBSC):
     pancakeRouter = pancakeTestnet
