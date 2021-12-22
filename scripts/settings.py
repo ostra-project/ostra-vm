@@ -3,7 +3,7 @@ from brownie import network
 
 
 # Contract
-contractName = 'OSTRA'
+contractName = 'Ostra'
 contractSizeLimit = 24 * 1024
 contractDecimals = 10**8
 
