@@ -7,7 +7,7 @@ import { LibModule } from '../libraries/LibModule.sol';
 import { IUpdateModule } from '../interfaces/IModule.sol';
 
 
-contract ModUpdatModule is IUpdateModule {
+contract __UpdateModule is IUpdateModule {
     // Allows to add / replace / remove any number of functions
     // Can optionally execute a function with delegateCall
     //   - _updateData: Module address & function selectors

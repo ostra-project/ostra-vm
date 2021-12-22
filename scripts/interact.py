@@ -14,6 +14,5 @@ def interact():
     txFrom = {'from': account}
     contract = Ostra[-1]  # Get Last Contract
 
-
 def main():
     interact()

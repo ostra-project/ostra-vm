@@ -29,3 +29,28 @@ interface IUpdateModule {
         bytes calldata _calldata
     ) external;
 }
+
+
+interface IModuleExplorer {
+    // Structs
+    struct Module {
+        address moduleAddress;
+        bytes4[] functionSelectors;
+    }
+
+
+    // Gets all modules addresses and their four byte function selectors
+    function modules() external view returns (Module[] memory _modules);
+
+
+    // Gets all function selectors supported by a specific module
+    function moduleFunctionSelectors(address _module) external view returns (bytes4[] memory _moduleFunctionSelectors);
+
+
+    // Gets all the module addresses used by the contract
+    function moduleAddresses() external view returns (address[] memory _moduleAddresses);
+
+
+    // Gets the module that supports the given selector 
+    function moduleAddress(bytes4 _functionSelectors) external view returns (address _moduleAddress);
+}
