@@ -14,7 +14,7 @@ pyprintRounding = 4
 
 # Brownie Connect
 defAccountIndex = 1
-mainAccount = ['real-account', 'matrix-account']
+userAccount = ['real-account', 'matrix-account']
 
 # Test Wallets
 testWallet01 = '0x0A5C946949b4cc1a80E332Aa89ACC5aa9017E206'

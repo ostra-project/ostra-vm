@@ -8,7 +8,7 @@ import settings
 
 
 # Get Account depending of the current active network
-accountID = settings.mainAccount[settings.defAccountIndex]
+accountID = settings.userAccount[settings.defAccountIndex]
 def getAccount(index = 0, ID = accountID):
 
     # Local BSC Fork
