@@ -1,8 +1,10 @@
-from scripts.utils.contract_size import getContractSize
-from scripts.utils.brownie_connect import getAccount
-from scripts.utils.pyprint import pyprint
-import scripts.settings as settings
 from brownie import (config, Ostra)
+import scripts.settings as settings
+from scripts.libraries.utility import (
+    getContractSize,
+    getAccount,
+    pyprint
+)
 
 
 def deploy():
