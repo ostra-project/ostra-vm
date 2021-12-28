@@ -7,10 +7,12 @@ from scripts.libraries.utility import (
 )
 
 
+# Default Contract Vars
+account = getAccount()
+txFrom = {'from': account}
+
+
 def deploy():
-    account = getAccount()
-    txFrom = {'from': account}
-    
     contract = Ostra.deploy(
         account.address,
         settings.pancakeRouter,

@@ -1,3 +1,6 @@
+# Ganache UI App should be launched to use the getAccount() function
+
+
 from pathlib import Path
 from colorama import Style, Fore
 from brownie import (accounts, config)
@@ -87,37 +90,51 @@ def generateAddressArray(nbLoop, letterStrength = 4):
     return addresses
 
 
-
-# Get the size of a contract
-# The path used to find the compiled JSON contract is ../build/contracts/
-# As contract_size.py is, by default inside the scripts/utils folder,
-def getContractSize():
+# Get the compiled code data from the build/contracts folder
+# This bytecode is found after the key 'deployedBytecode'
+# Inside the main contract .json file, the name can be modifier
+# Inside the 'settings.py' file
+def getCompiledCode(sectionTitle):
     contractName = settings.contractName + '.json'
     relativePath = settings.contractFolder + contractName
 
-    bytecodeSize = 0
+    data = None
     cwd = Path(__file__).parent.parent
     contractPath = (cwd / relativePath).resolve()
 
     try:
         contract = open(contractPath)
         data = json.load(contract)
+        contract.close()
+    except OSError:
+        pyprint('Can\'t get contract file from the build directory', 'ERROR', None, sectionTitle)
 
+    return data
+
+
+# Get the size of a contract
+# The path used to find the compiled JSON contract is ../build/contracts/
+# As contract_size.py is, by default inside the scripts/utils folder,
+def getContractSize():
+
+    sectionTitle = 'CONTRACT SIZE'
+    data = getCompiledCode(sectionTitle)
+    bytecodeSize = 0
+
+    if data != None:
         if 'deployedBytecode' not in data:
-            pyprint(f'deployedBytecode not found in {relativePath}', 'ERROR', None, 'CONTRACT SIZE')
+            pyprint(f'deployedBytecode not found in {settings.contractFolder}', 'ERROR', None, sectionTitle)
         else:
             hexBytecode = bytes.fromhex(data['deployedBytecode'])
             bytecodeSize = len(hexBytecode) * 2
             sizePercentage = round((bytecodeSize / settings.contractSizeLimit) * 100, 2)
 
             if sizePercentage <= 100:
-                pyprint(f'{sizePercentage}%', 'Percentage used', None, 'CONTRACT SIZE')
+                pyprint(f'{sizePercentage}%', 'Percentage used', None, sectionTitle)
             else:
-                pyprint('SIZE LIMIT IS REACHED', 'ERROR', None, 'CONTRACT SIZE')
+                pyprint('SIZE LIMIT IS REACHED', 'ERROR', None, sectionTitle)
 
-            pyprint(f'{bytecodeSize} / {settings.contractSizeLimit} bytes', 'Contract Size', None, 'CONTRACT SIZE')
+            pyprint(f'{bytecodeSize} / {settings.contractSizeLimit} bytes', 'Contract Size', None, sectionTitle)
 
-    except OSError:
-        pyprint('Can\'t get contract file from the build directory', 'ERROR', None, 'CONTRACT SIZE')
-
+    print('')
     return bytecodeSize
