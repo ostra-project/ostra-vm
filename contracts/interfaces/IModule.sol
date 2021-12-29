@@ -3,15 +3,15 @@
 pragma solidity ^0.8.10;
 
 
-interface IUpdateModule {
+interface IUpdate {
     // Enums
-    enum UpdateType {ADD, REPLACE, REMOVE}
+    enum UpdateMethod {ADD, REPLACE, REMOVE}
 
     // Structs
     struct UpdateData {
-        address moduleAddress;
-        bytes4[] functionSelectors;
-        UpdateType updateType;
+        address modAddress;
+        bytes4[] funcSelectors;
+        UpdateMethod updateMethod;
     }
 
     // Events
@@ -31,16 +31,16 @@ interface IUpdateModule {
 }
 
 
-interface IModuleExplorer {
+interface IExplorer {
     // Structs
-    struct Module {
-        address moduleAddress;
-        bytes4[] functionSelectors;
+    struct ModuleData {
+        address modAddress;
+        bytes4[] funcSelectors;
     }
 
 
     // Gets all modules addresses and their four byte function selectors
-    function modules() external view returns (Module[] memory _modules);
+    function modules() external view returns (ModuleData[] memory _modules);
 
 
     // Gets all function selectors supported by a specific module

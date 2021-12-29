@@ -4,20 +4,20 @@ pragma solidity ^0.8.10;
 
 
 import { LibModule } from './libraries/LibModule.sol';
-import { IUpdateModule } from './interfaces/IModule.sol';
+import { IUpdate } from './interfaces/IModule.sol';
 
 
 contract Ostra {
     constructor(address _updateModuleAddress) payable {
-        IUpdateModule.UpdateData[] memory updateData = new IUpdateModule.UpdateData[](1);
+        IUpdate.UpdateData[] memory updateData = new IUpdate.UpdateData[](1);
         bytes4[] memory functionSelectors = new bytes4[](1);
 
-        functionSelectors[0] = IUpdateModule.updateModule.selector;
+        functionSelectors[0] = IUpdate.updateModule.selector;
 
-        updateData[0] = IUpdateModule.UpdateData({
-            moduleAddress: _updateModuleAddress,
-            functionSelectors: functionSelectors,
-            updateType: IUpdateModule.UpdateType.ADD
+        updateData[0] = IUpdate.UpdateData({
+            modAddress: _updateModuleAddress,
+            funcSelectors: functionSelectors,
+            updateMethod: IUpdate.UpdateMethod.ADD
         });
 
         LibModule.updateModule(updateData, address(0), '');
@@ -29,7 +29,7 @@ contract Ostra {
         bytes32 pos = LibModule.MODULE_STORAGE_POINTER;
         assembly { DS.slot := pos }
 
-        address module = DS.currentModule[msg.sig].moduleAddress;
+        address module = DS.currentModule[msg.sig].modAddress;
         require(module != address(0), 'MODULE: Function not found');
 
         assembly {

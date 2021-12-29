@@ -13,7 +13,7 @@ sys.path.append(parent)
 import settings
 
 
-# PYPRINT
+# Pyprint
 currentSectionTitle = ''
 def pyprint(msg = 'Null', title = None, percents = None, sectionTitle = settings.pyprintTitle):
     global currentSectionTitle
@@ -138,3 +138,31 @@ def getContractSize():
 
     print('')
     return bytecodeSize
+
+
+# Diamond (Modules System)
+UpdateMethod = {'ADD': 0, 'REPLACE': 1, 'REMOVE': 2}
+
+
+def modGetSelectors(contract):
+    pass
+
+
+def modGetSelector(func):
+    pass
+
+
+def modRemove(functionNames):
+    pass
+
+
+def modGet(functionNames):
+    pass
+
+
+def modRemoveSelectors(selectors, signatures):
+    pass
+
+
+def modFindAddressPosInModule(moduleAddress, modules):
+    pass

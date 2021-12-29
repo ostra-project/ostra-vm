@@ -4,10 +4,10 @@ pragma solidity ^0.8.10;
 
 
 import { LibModule } from '../libraries/LibModule.sol';
-import { IUpdateModule } from '../interfaces/IModule.sol';
+import { IUpdate } from '../interfaces/IModule.sol';
 
 
-contract __UpdateModule is IUpdateModule {
+contract ModUpdate is IUpdate {
     // Allows to add / replace / remove any number of functions
     // Can optionally execute a function with delegateCall
     //   - _updateData: Module address & function selectors
