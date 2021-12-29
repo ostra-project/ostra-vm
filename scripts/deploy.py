@@ -42,7 +42,7 @@ def deploy():
     functionCall = initContract.signatures['init']
     tx = updateModule.updateModule(moduleList, initContract.address, functionCall)
 
-    pyprint(updateModule.address, 'Update Module Contract Deployed')
+    pyprint(updateModule.address, 'UpdateModule Contract Deployed')
     pyprint(contract.address, 'Main Contract Deployed')
     pyprint(initContract.address, 'Init Contract Deployed')
 
