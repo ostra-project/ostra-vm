@@ -1,10 +1,7 @@
 from brownie import Ostra
 import scripts.settings as settings
 from scripts.libraries.utility import (
-    generateAddressArray,
-    getContractSize,
-    getAccount,
-    pyprint
+    getAccount
 )
 
 

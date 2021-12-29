@@ -1,14 +1,17 @@
 import scripts.settings as settings
 from scripts.libraries.utility import (
+    UpdateMethod,
     getContractSize,
+    modGetSelectors,
     getAccount,
+    getTxHash,
     pyprint
 )
+
 from brownie import (
-    config,
     Ostra,
-    xUpdateModule,
-    xModuleExplorer,
+    ModUpdate,
+    ModExplorer,
     InitOstra
 )
 
@@ -19,29 +22,34 @@ txFrom = {'from': account}
 
 
 def deploy():
-    updateModule = xUpdateModule.deploy(txFrom)
+    updateModule = ModUpdate.deploy(txFrom)
     contract = Ostra.deploy(updateModule.address, txFrom)
     initContract = InitOstra.deploy(txFrom)
 
-    pyprint(updateModule.address, 'Update Module Contract Deployed')
-    pyprint(contract.address, 'Main Contract Deployed')
-    pyprint(initContract.address, 'Init Contract Deployed')
-    print('')
-
     # Deploy Modules
-    moduleNames = [xModuleExplorer]
+    moduleNames = [ModExplorer]
     moduleLen = len(moduleNames)
     moduleList = []
 
     for i in range (0, moduleLen):
         currentModule = moduleNames[i].deploy(txFrom)
-        moduleList.append({
-            'modAddress': currentModule.address,
-            'funcSelectors': 0,
-            'UpdateMethod': 'ADD'
-        })
+        moduleList.append([
+            currentModule.address,
+            modGetSelectors(currentModule),
+            UpdateMethod['ADD']
+        ])
 
-        pyprint(currentModule.address, 'Module Deployed')
+    functionCall = initContract.signatures['init']
+    tx = updateModule.updateModule(moduleList, initContract.address, functionCall)
+
+    pyprint(updateModule.address, 'Update Module Contract Deployed')
+    pyprint(contract.address, 'Main Contract Deployed')
+    pyprint(initContract.address, 'Init Contract Deployed')
+
+    if not tx.revert_msg:
+        pyprint(getTxHash(tx), 'Update Module Completed')
+    else:
+        pyprint(tx.revert_msg, 'ERROR')
 
 
 def main():

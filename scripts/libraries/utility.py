@@ -140,12 +140,26 @@ def getContractSize():
     return bytecodeSize
 
 
+# Get the TX Hash from a TransactionReceipt object
+def getTxHash(tx):
+    txHash = str(tx)
+    return txHash[14:-2]
+
+
 # Diamond (Modules System)
 UpdateMethod = {'ADD': 0, 'REPLACE': 1, 'REMOVE': 2}
 
 
 def modGetSelectors(contract):
-    pass
+    signatures = list(contract.signatures.keys())
+    signLen = len(signatures)
+    selectors = []
+
+    for i in range(0, signLen):
+        if signatures[i] != 'init':
+            selectors.append(contract.signatures[signatures[i]])
+    
+    return selectors
 
 
 def modGetSelector(func):
