@@ -146,37 +146,5 @@ def getTxHash(tx):
     return txHash[14:-2]
 
 
-# Diamond (Modules System)
-UpdateMethod = {'ADD': 0, 'REPLACE': 1, 'REMOVE': 2}
-
-
-def modGetSelectors(contract):
-    signatures = list(contract.signatures.keys())
-    signLen = len(signatures)
-    selectors = []
-
-    for i in range(0, signLen):
-        if signatures[i] != 'init':
-            selectors.append(contract.signatures[signatures[i]])
-    
-    return selectors
-
-
-def modGetSelector(func):
-    pass
-
-
-def modRemove(functionNames):
-    pass
-
-
-def modGet(functionNames):
-    pass
-
-
-def modRemoveSelectors(selectors, signatures):
-    pass
-
-
-def modFindAddressPosInModule(moduleAddress, modules):
-    pass
+# Converts basic values to uint256 decimals
+def gwei(number): return number * 10**8
