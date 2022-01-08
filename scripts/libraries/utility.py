@@ -8,25 +8,29 @@ from colorama import Fore, Style
 from .statics import Statics
 
 
-class Printer:
+class DRV:
     SECTION_TITLE: str = ''
 
     @staticmethod
-    def pyprint(msg: str = 'Null', title = None, percents: int = None, section_title: str = settings.pyprint_title):
+    def pyprint(msg: str = 'Null',
+        title = None,
+        percents: int = None,
+        section_title: str = settings.pyprint_title
+    ):
         '''Allows the user to print into the console with the Brownie Colorama / Style
 
         Args:
             msg: Logging message.
             title: Logging title.
             percents: Percents (Wallet / TotalSupply).
-            section_title: Title of the section. Defaults to settings.pyprint_title.
+            section_title: Title of the section.
         '''
         
-        separators = '-' * 8
-        if Printer.SECTION_TITLE != section_title:
+        separators = '-' * 24
+        if DRV.SECTION_TITLE != section_title:
             print('')
             print(f'\n{settings.pyprint_color}{separators} {section_title} {separators}{Style.RESET_ALL}')
-            Printer.SECTION_TITLE = section_title
+            DRV.SECTION_TITLE = section_title
 
         output = str(msg)
 
@@ -45,8 +49,6 @@ class Printer:
             print(f'> {title}: {output} {out_percents}')
         else:
             print(f'> {output}, {out_percents}')
-
-pyprint = Printer.pyprint
 
 
 def get_account(index: int = 0, ID: str = Statics.ACCOUNT_DEF_ID):
@@ -124,7 +126,7 @@ def get_compiled_code(section_title: str) -> dict:
         with open(contract_path) as contract:
             data = json.load(contract)
     except OSError:
-        pyprint('Can\'t get contract file from the build directory', 'ERROR', None, section_title)
+        DRV.pyprint('Can\'t get contract file from the build directory', 'ERROR', None, section_title)
 
     return data
 
@@ -144,7 +146,7 @@ def get_contract_size() -> int:
 
     if data is not None:
         if 'deployedBytecode' not in data:
-            pyprint(f'deployedBytecode not found in {settings.contract_folder}', 'ERROR', None, section_title)
+            DRV.pyprint(f'deployedBytecode not found in {settings.contract_folder}', 'ERROR', None, section_title)
         else:
             hex_bytecode = bytes.fromhex(data['deployedBytecode'])
             bytecode_size = len(hex_bytecode) * 2
@@ -156,8 +158,8 @@ def get_contract_size() -> int:
                 ('SIZE LIMIT IS REACHED', 'ERROR')
             )
 
-            pyprint(msg, title, None, section_title)
-            pyprint(f'{bytecode_size} / {settings.contract_size_limit} bytes', 'Contract Size', None, section_title)
+            DRV.pyprint(msg, title, None, section_title)
+            DRV.pyprint(f'{bytecode_size} / {settings.contract_size_limit} bytes', 'Contract Size', None, section_title)
 
     print('')
     return bytecode_size

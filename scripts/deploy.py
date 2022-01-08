@@ -1,11 +1,6 @@
 from brownie import (config, Ostra)
-import scripts.settings as settings
-from scripts.libraries.utility import (
-    get_contract_size,
-    get_account,
-    pyprint
-)
-
+import settings
+from libraries.utility import *
 
 
 # Default Contract Vars
