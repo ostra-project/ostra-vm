@@ -1,6 +1,6 @@
+from scripts.libraries.utility import *
 from brownie import (config, Ostra)
-import settings
-from libraries.utility import *
+import scripts.settings as settings
 
 
 # Default Contract Vars

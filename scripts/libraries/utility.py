@@ -1,11 +1,11 @@
 # Ganache UI App should be launched to use the get_account() function
-import json
-import random
-import scripts.settings as settings
-from pathlib import Path
 from brownie import accounts, config
 from colorama import Fore, Style
 from .statics import Statics
+from pathlib import Path
+import scripts.settings as settings
+import random
+import json
 
 
 class DRV:
@@ -172,4 +172,5 @@ def get_TX_hash(tx):
 
 
 # Converts basic values to uint256 decimals
-def gwei(number): return number * 10**8
+def gwei(number):
+    return number * 10**8
